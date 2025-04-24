@@ -28,4 +28,11 @@ steps:
     azureSubscription: 'my-service-connection'  # 🔁 Replace with your connection name
     appName: 'my-static-ciapp1'                    # 🔁 Replace with your Azure App name
     package: '$(Build.ArtifactStagingDirectory)/site.zip'
-
+- task: AzureRmWebAppDeployment@5
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Pay-As-You-Go(14dab80e-335e-4346-aaf7-39d01d212a68)'
+    appType: 'webAppLinux'
+    WebAppName: 'my-static-ciapp1'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    DeploymentTypeLinux: 'oneDeploy'
